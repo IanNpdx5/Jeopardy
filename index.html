@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KNQ53RTX');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KNQ53RTX');</script>
+    <!-- End Google Tag Manager -->
     <!-- Define the listener BEFORE GTM fires the template -->
-  <script>
-    var consentCallbacks = [];
-    window.addConsentListenerExample = function (cb) {
-      consentCallbacks.push(cb);
-    };
-  </script>
+    <script>
+        var consentCallbacks = [];
+        window.addConsentListenerExample = function (cb) {
+            consentCallbacks.push(cb);
+        };
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A spanish game site.">
@@ -27,10 +30,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNQ53RTX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNQ53RTX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="page">
         <div id="title">
             <h1 id="resetBtn">Jeopardy - Spainsh</h1>
@@ -41,63 +44,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3>Answer It</h3>
             <h3>Berto Y Sus Amigos</h3>
             <h3>Cuartro Misterioso</h3>
-            <button data-col="0" data-row="0">100</button>
-            <button data-col="1" data-row="0">100</button>
-            <button data-col="2" data-row="0">100</button>
-            <button data-col="3" data-row="0">100</button>
-            <button data-col="4" data-row="0">100</button>
-            <button data-col="0" data-row="1">200</button>
-            <button data-col="1" data-row="1">200</button>
-            <button data-col="2" data-row="1">200</button>
-            <button data-col="3" data-row="1">200</button>
-            <button data-col="4" data-row="1">200</button>
-            <button data-col="0" data-row="2">300</button>
-            <button data-col="1" data-row="2">300</button>
-            <button data-col="2" data-row="2">300</button>
-            <button data-col="3" data-row="2">300</button>
-            <button data-col="4" data-row="2">300</button>
-            <button data-col="0" data-row="3">400</button>
-            <button data-col="1" data-row="3">400</button>
-            <button data-col="2" data-row="3">400</button>
-            <button data-col="3" data-row="3">400</button>
-            <button data-col="4" data-row="3">400</button>
-            <button data-col="0" data-row="4">500</button>
-            <button data-col="1" data-row="4">500</button>
-            <button data-col="2" data-row="4">500</button>
-            <button data-col="3" data-row="4">500</button>
-            <button data-col="4" data-row="4">500</button>
+            <button id="0" data-col="0" data-row="0">100</button>
+            <button id="5" data-col="1" data-row="0">100</button>
+            <button id="10" data-col="2" data-row="0">100</button>
+            <button id="15" data-col="3" data-row="0">100</button>
+            <button id="20" data-col="4" data-row="0">100</button>
+            <button id="1" data-col="0" data-row="1">200</button>
+            <button id="6" data-col="1" data-row="1">200</button>
+            <button id="11" data-col="2" data-row="1">200</button>
+            <button id="16" data-col="3" data-row="1">200</button>
+            <button id="21" data-col="4" data-row="1">200</button>
+            <button id="2" data-col="0" data-row="2">300</button>
+            <button id="7" data-col="1" data-row="2">300</button>
+            <button id="12" data-col="2" data-row="2">300</button>
+            <button id="17" data-col="3" data-row="2">300</button>
+            <button id="22" data-col="4" data-row="2">300</button>
+            <button id="3" data-col="0" data-row="3">400</button>
+            <button id="8" data-col="1" data-row="3">400</button>
+            <button id="13" data-col="2" data-row="3">400</button>
+            <button id="18" data-col="3" data-row="3">400</button>
+            <button id="23" data-col="4" data-row="3">400</button>
+            <button id="4" data-col="0" data-row="4">500</button>
+            <button id="9" data-col="1" data-row="4">500</button>
+            <button id="14" data-col="2" data-row="4">500</button>
+            <button id="19" data-col="3" data-row="4">500</button>
+            <button id="24" data-col="4" data-row="4">500</button>
         </div>
     </div>
-    <div id="consent-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;padding:1rem;background:#222;color:#fff;">
-    We use cookies for analytics and ads.
-    <button id="accept-all">Accept all</button>
-    <button id="reject-all">Reject all</button>
-  </div>
+    <div id="consent-banner"
+        style="display:none;position:fixed;bottom:0;left:0;right:0;padding:1rem;background:#222;color:#fff;">
+        We use cookies for analytics and ads.
+        <button id="accept-all">Accept all</button>
+        <button id="reject-all">Reject all</button>
+    </div>
 
-  <script>
-    function saveConsent(granted) {
-      var consent = {
-        adConsentGranted: granted,
-        adUserDataConsentGranted: granted,
-        adPersonalizationConsentGranted: granted,
-        analyticsConsentGranted: granted,
-        functionalityConsentGranted: granted,
-        personalizationConsentGranted: granted,
-        securityConsentGranted: true
-      };
-      // Cookie name must match COOKIE_NAME ('cookies') in the template
-      document.cookie = 'cookies=' + encodeURIComponent(JSON.stringify(consent)) +
-        ';max-age=31536000;path=/;SameSite=Lax';
-      consentCallbacks.forEach(function (cb) { cb(consent); });
-      document.getElementById('consent-banner').style.display = 'none';
-    }
+    <script>
+        function saveConsent(granted) {
+            var consent = {
+                adConsentGranted: granted,
+                adUserDataConsentGranted: granted,
+                adPersonalizationConsentGranted: granted,
+                analyticsConsentGranted: granted,
+                functionalityConsentGranted: granted,
+                personalizationConsentGranted: granted,
+                securityConsentGranted: true
+            };
+            // Cookie name must match COOKIE_NAME ('cookies') in the template
+            document.cookie = 'cookies=' + encodeURIComponent(JSON.stringify(consent)) +
+                ';max-age=31536000;path=/;SameSite=Lax';
+            consentCallbacks.forEach(function (cb) { cb(consent); });
+            document.getElementById('consent-banner').style.display = 'none';
+        }
 
-    if (document.cookie.indexOf('cookies=') === -1) {
-      document.getElementById('consent-banner').style.display = 'block';
-    }
-    document.getElementById('accept-all').onclick = function () { saveConsent(true); };
-    document.getElementById('reject-all').onclick = function () { saveConsent(false); };
-  </script>
+        if (document.cookie.indexOf('cookies=') === -1) {
+            document.getElementById('consent-banner').style.display = 'block';
+        }
+        document.getElementById('accept-all').onclick = function () { saveConsent(true); };
+        document.getElementById('reject-all').onclick = function () { saveConsent(false); };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./Code.js"></script>
 </body>
