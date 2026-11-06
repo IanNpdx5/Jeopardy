@@ -1,64 +1,128 @@
-const questionBank = {
-    column1Opt1: { question: '¡Hola! Me llamo Eric.', answer: 'Hello! You can call me Eric.' },
-    column1Opt2: { question: 'Eric es inteligente y está treste.', answer: 'Eric is intelligent and is feeling sad.' },
-    column1Opt3: { question: 'Eric es treste porque su perro está emfermo y mal.', answer: 'Eric is sad because his dog is sick.' },
-    column1Opt4: { question: 'Te presento a perro se llama Gandalf. Gandalf es el perro de Eric.', answer: 'I\'d like to introduce you to this dog. His name is Gandalf. Gandalf is Eric\'s dog.' },
-    column1Opt5: { question: 'Eric tiene que ir a casa de su tío.', answer: 'Eric has to go to his uncle\'s house.' },
-    column2Opt1: { question: 'Did Mexico break away from Spain?', answer: 'Yes!' },
-    column2Opt2: { question: 'Spain is the bigest producer of what product?', answer: 'Olive oil. Spain make 45% of the worlds olive oil.' },
-    column2Opt3: { question: 'Why do people talk El Camino de Santiago?', answer: 'For spirtiual reasons.' },
-    column2Opt4: { question: 'What is the capital of Spain?', answer: 'Es Madrid.' },
-    column2Opt5: { question: 'What is El Grito de Dolores?', answer: 'The start of Mexican independence' },
-    column3Opt1: { question: 'What is the differnce between tú and usted?', answer: 'Formal: usted, and informal: tú.' },
-    column3Opt2: { question: 'How do you say the exit in spanish?', answer: 'La salida.' },
-    column3Opt3: { question: '¿Que es \'que onda\'?', answer: 'What\'s up.' },
-    column3Opt4: { question: 'What is the largest Spanish speaking country?', answer: 'Mexico (120 million).' },
-    column3Opt5: { question: '¿What is the offical name of Mexico?', answer: 'Los Estados Unidos Mexicanos.' },
-    column4Opt1: { question: '¿Como es Carlos?', answer: 'El no dige la veredad y está aburrido que en su casa.' },
-    column4Opt2: { question: '¿Como es Rufi y Rafi (Los perros de Felipe)', answer: 'les gusta comer mucha paella.' },
-    column4Opt3: { question: '¿Como es Paquita?', answer: 'Ella es una Youtubera famosa.' },
-    column4Opt4: { question: '¿Como es Felipe?', answer: 'Le gustan cocinar muchas comidas.' },
-    column4Opt5: { question: '¿Detras de fútbol, Carlos tiene hambre, si él va a comer que?', answer: 'Él va a comer 37 sandwiches.' },
-    column5Opt1: { question: '¿Quien es el amigo de José?', answer: 'Fransisco.' },
-    column5Opt2: { question: '¿De dónde es Ana y Conchita?', answer: 'Spain.' },
-    column5Opt3: { question: '¿Quien vive con José?', answer: 'Don Pedro.' },
-    column5Opt4: { question: '¿Cuando es el conerto de Conchita?', answer: 'El concerto es en cuatro semanas.' },
-    column5Opt5: { question: '¿Que es en el cuartro misterioso?', answer: '¡Muchas ratas son en el cuartro misterioso!' }
-};
+const defaultBank = [
+    "Jeopardy - Spainsh",
+    
+    ["Translation", "History", "Answer It", "Berto Y Sus Amigos", "Cuartro Misterioso"],
+    
+    [
+        [
+            ["¡Hola! Me llamo Eric.", "Hello! You can call me Eric."],
+            ["Eric es inteligente y está treste.", "Eric is intelligent and is feeling sad."],
+            ["Eric es treste porque su perro está emfermo y mal.", "Eric is sad because his dog is sick."],
+            ["Te presento a perro se llama Gandalf. Gandalf es el perro de Eric.", "I'd like to introduce you to this dog. His name is Gandalf. Gandalf is Eric's dog."],
+            ["Eric tiene que ir a casa de su tío.", "Eric has to go to his uncle's house."]
+        ],
+        [
+            ["Did Mexico break away from Spain?", "Yes!"],
+            ["Spain is the bigest producer of what product?", "Olive oil. Spain make 45% of the worlds olive oil."],
+            ["Why do people talk El Camino de Santiago?", "For spirtiual reasons."],
+            ["What is the capital of Spain?", "Es Madrid."],
+            ["What is El Grito de Dolores?", "The start of Mexican independence."]
+        ],
+        [
+            ["What is the differnce between tú and usted?", "Formal: usted, and informal: tú."],
+            ["How do you say the exit in spanish?", "La salida."],
+            ["¿Que es 'que onda'?", "What's up."],
+            ["What is the largest Spanish speaking country?", "Mexico (120 million)."],
+            ["¿What is the offical name of Mexico?", "Los Estados Unidos Mexicanos."]
+        ],
+        [
+            ["¿Como es Carlos?", "El no dige la veredad and está aburrido que en su casa."],
+            ["¿Como es Rufi y Rafi (Los perros de Felipe)?", "les gusta comer mucha paella."],
+            ["¿Como es Paquita?", "Ella es una Youtubera famosa."],
+            ["¿Como es Felipe?", "Le gustan cocinar muchas comidas."],
+            ["¿Detras de fútbol, Carlos tiene hambre, si él va a comer que?", "Él va a comer 37 sandwiches."]
+        ],
+        [
+            ["¿Quien es el amigo de José?", "Fransisco."],
+            ["¿De dónde es Ana y Conchita?", "Spain."],
+            ["¿Quien vive con José?", "Don Pedro."],
+            ["¿Cuando es el conerto de Conchita?", "El concerto es en cuatro semanas."],
+            ["¿Que es en el cuartro misterioso?", "¡Muchas ratas son en el cuartro misterioso!"]
+        ]
+    ]
+];
+
+
+let bank;
+
+const urlParams = new URLSearchParams(window.location.search);
+const compressedGame = urlParams.get('g');
+
+if (!compressedGame) {
+    console.error("No custom game found in the URL. :(");
+    bank = defaultBank;
+} else {
+    try {
+        const decompressedJSON = LZString.decompressFromEncodedURIComponent(compressedGame);
+
+        bank = JSON.parse(decompressedJSON);
+
+        console.log("Loaded questions and column titles from url");
+        console.log(bank);
+    } catch (error) {
+        console.error("Failed to parse or decompress game data:", error);
+        bank = defaultBank;
+    }
+}
+
+const compressedString = LZString.compressToEncodedURIComponent(JSON.stringify(bank));
+const shareableLink = "https://iannpdx5.github.io/Spanish-Jeopardy?g=" + compressedString;
+console.log(shareableLink);
+
+const defaultTitles = {};
+
+function setDefaultColumnTitles() {
+    const titles = document.querySelectorAll('#options h3');
+
+    titles.forEach((title) => {
+        const column = title.dataset.columnnumber;
+
+        const text = title.textContent.trim();
+
+        defaultTitles[column] = text;
+        title.dataset.originalText = text;
+    });
+}
 
 const defaultValues = {};
-
-var points = {
-    0: 0,
-    1: 0,
-    2: 0,
-    3: 0
-};
-
-var currentTeamOnDeck = 0;
 
 function setDefaultButtonValues() {
     const buttons = document.querySelectorAll('#options button');
 
     buttons.forEach((button) => {
-        const id = button.id;
+        // Use coordinates to create a short, reliable map key (e.g., "0-0", "0-1")
+        const col = button.dataset.col;
+        const row = button.dataset.row;
+        const coordKey = `${col}-${row}`;
+
         const value = button.textContent.trim();
-        defaultValues[id] = value;
+
+        // Save to your tracking object and element dataset
+        defaultValues[coordKey] = value;
         button.dataset.originalValue = value;
     });
 }
-
 const resetBtn = document.getElementById("resetBtn");
 
 resetBtn.addEventListener("click", resetGame);
 
 function resetGame() {
+    const titles = document.querySelectorAll('#options h3');
+
+    titles.forEach((title) => {
+        const column = title.dataset.columnNumber;
+        const text = title.dataset.originalText || defaultTitles[column] || title.textContent.trim();
+        defaultTitles[column] = text;
+        title.dataset.originalText = text;
+        title.textContent = text;
+    });
+
     const buttons = document.querySelectorAll('#options button');
 
     buttons.forEach((button) => {
-        const id = button.id;
-        const value = button.dataset.originalValue || defaultValues[id] || button.textContent.trim();
-        defaultValues[id] = value;
+        const coordKey = button.coordKey;
+        const value = button.dataset.originalValue || defaultValues[coordKey] || button.textContent.trim();
+        defaultValues[coordKey] = value;
         button.dataset.originalValue = value;
         button.textContent = value;
         button.disabled = false;
@@ -108,7 +172,7 @@ function askQuestion(item, clickedButton) {
     label.style.textTransform = 'uppercase';
 
     const question = document.createElement('h2');
-    question.textContent = item.question;
+    question.textContent = item[0];
     question.style.margin = '0 0 18px';
     question.style.fontSize = '1.3rem';
     question.style.lineHeight = '1.5';
@@ -192,13 +256,9 @@ function askQuestion(item, clickedButton) {
             clickedButton.classList.add('used');
             clickedButton.classList.remove('available');
             clickedButton.style.opacity = '0.9';
-
-            // TODO: DO THIS!
-            // points[currentTeamOnDeck] += value;
-            // currentTeamOnDeck += 1;
         }
 
-        answerText.textContent = item.answer;
+        answerText.textContent = item[1];
         answerText.style.filter = 'none';
         answerText.style.opacity = '1';
         hint.textContent = 'Answer revealed';
@@ -243,9 +303,14 @@ function askQuestion(item, clickedButton) {
 }
 
 $(function () {
-    const buttons = document.querySelectorAll('#options button');
+    const titles = document.querySelectorAll('#options h3');
 
-    setDefaultButtonValues();
+    titles.forEach((title) => {
+        const n = title.dataset.columnNumber;
+        title.textContent = bank[1][n] || "ERROR!";
+    });
+    
+    const buttons = document.querySelectorAll('#options button');
 
     buttons.forEach((button) => {
         button.classList.add('available');
@@ -254,12 +319,14 @@ $(function () {
                 return;
             }
 
-            const item = questionBank[button.id] || {
-                question: 'ERROR!',
-                answer: 'ERROR!'
-            };
+            const n1 = button.dataset.col;
+            const n2 = button.dataset.row
+            const item = bank[2][n1][n2] || ['ERROR!', 'ERROR!'];
 
             askQuestion(item, button);
         });
     });
+
+    setDefaultColumnTitles();
+    setDefaultButtonValues();
 });
