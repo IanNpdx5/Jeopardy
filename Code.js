@@ -69,62 +69,17 @@ const compressedString = LZString.compressToEncodedURIComponent(JSON.stringify(b
 const shareableLink = "https://iannpdx5.github.io/Spanish-Jeopardy?g=" + compressedString;
 console.log(shareableLink);
 
-const defaultTitles = {};
-
-function setDefaultColumnTitles() {
-    const titles = document.querySelectorAll('#options h3');
-
-    titles.forEach((title) => {
-        const column = title.dataset.columnnumber;
-
-        const text = title.textContent.trim();
-
-        defaultTitles[column] = text;
-        title.dataset.originalText = text;
-    });
-}
-
-const defaultValues = {};
-
-function setDefaultButtonValues() {
-    const buttons = document.querySelectorAll('#options button');
-
-    buttons.forEach((button) => {
-        // Use coordinates to create a short, reliable map key (e.g., "0-0", "0-1")
-        const col = button.dataset.col;
-        const row = button.dataset.row;
-        const coordKey = `${col}-${row}`;
-
-        const value = button.textContent.trim();
-
-        // Save to your tracking object and element dataset
-        defaultValues[coordKey] = value;
-        button.dataset.originalValue = value;
-    });
-}
-const resetBtn = document.getElementById("resetBtn");
-
-resetBtn.addEventListener("click", resetGame);
+const jName = bank[0];
+const titlestxt = bank[1];
+const qAndA = bank[2];
+const values = [100, 200, 300, 400, 500];
 
 function resetGame() {
-    const titles = document.querySelectorAll('#options h3');
-
-    titles.forEach((title) => {
-        const column = title.dataset.columnNumber;
-        const text = title.dataset.originalText || defaultTitles[column] || title.textContent.trim();
-        defaultTitles[column] = text;
-        title.dataset.originalText = text;
-        title.textContent = text;
-    });
-
     const buttons = document.querySelectorAll('#options button');
 
     buttons.forEach((button) => {
-        const coordKey = button.coordKey;
-        const value = button.dataset.originalValue || defaultValues[coordKey] || button.textContent.trim();
-        defaultValues[coordKey] = value;
-        button.dataset.originalValue = value;
-        button.textContent = value;
+        const row = button.dataset.row;
+        button.textContent = values[row];
         button.disabled = false;
         button.classList.add('available');
         button.classList.remove('used');
@@ -136,6 +91,10 @@ function resetGame() {
         overlay.remove();
     }
 }
+
+const resetBtn = document.getElementById("resetBtn");
+
+resetBtn.addEventListener("click", resetGame);
 
 function askQuestion(item, clickedButton) {
     const existingOverlay = document.getElementById('questionOverlay');
@@ -303,30 +262,29 @@ function askQuestion(item, clickedButton) {
 }
 
 $(function () {
+    document.querySelector('#resetBtn').textContent = jName || "ERROR!";
+
     const titles = document.querySelectorAll('#options h3');
 
     titles.forEach((title) => {
-        const n = title.dataset.columnNumber;
-        title.textContent = bank[1][n] || "ERROR!";
+        const n = title.dataset.col;
+        title.textContent = titlestxt[n] || "ERROR!";
     });
     
     const buttons = document.querySelectorAll('#options button');
 
     buttons.forEach((button) => {
+        const nColumn = button.dataset.col;
+        const nRow = button.dataset.row;
+        button.textContent = values[nRow];
         button.classList.add('available');
         button.addEventListener('click', () => {
             if (button.disabled) {
                 return;
             }
-
-            const n1 = button.dataset.col;
-            const n2 = button.dataset.row
-            const item = bank[2][n1][n2] || ['ERROR!', 'ERROR!'];
+            const item = qAndA[nColumn][nRow] || ['ERROR!', 'ERROR!'];
 
             askQuestion(item, button);
         });
     });
-
-    setDefaultColumnTitles();
-    setDefaultButtonValues();
 });
