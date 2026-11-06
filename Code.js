@@ -1,60 +1,88 @@
-const defaultQuestionBank = [
+const defaultBank = [
+    "Jeopardy - Spainsh",
+    
     ["Translation", "History", "Answer It", "Berto Y Sus Amigos", "Cuartro Misterioso"],
+    
     [
-        ["¡Hola! Me llamo Eric.",  "Hello! You can call me Eric."], 
-        ["Eric es inteligente y está treste.",  "Eric is intelligent and is feeling sad."], 
-        ["Eric es treste porque su perro está emfermo y mal.",  "Eric is sad because his dog is sick."], 
-        ["Te presento a perro se llama Gandalf. Gandalf es el perro de Eric.",  "I'd like to introduce you to this dog. His name is Gandalf. Gandalf is Eric's dog."],
-        ["Eric tiene que ir a casa de su tío.",  "Eric has to go to his uncle's house."],
-        ["Did Mexico break away from Spain?",  "Yes!"],
-        ["Spain is the bigest producer of what product?",  "Olive oil. Spain make 45% of the worlds olive oil."],
-        ["Why do people talk El Camino de Santiago?",  "For spirtiual reasons."],
-        ["What is the capital of Spain?",  "Es Madrid."],
-        ["What is El Grito de Dolores?",  "The start of Mexican independence."],
-        ["What is the differnce between tú and usted?",  "Formal: usted, and informal: tú."],
-        ["How do you say the exit in spanish?",  "La salida."],
-        ["¿Que es 'que onda'?",  "What's up."],
-        ["What is the largest Spanish speaking country?",  "Mexico (120 million)."],
-        ["¿What is the offical name of Mexico?",  "Los Estados Unidos Mexicanos."],
-        ["¿Como es Carlos?",  "El no dige la veredad y está aburrido que en su casa."],
-        ["¿Como es Rufi y Rafi (Los perros de Felipe)?",  "les gusta comer mucha paella."],
-        ["¿Como es Paquita?",  "Ella es una Youtubera famosa."],
-        ["¿Como es Felipe?",  "Le gustan cocinar muchas comidas."],
-        ["¿Detras de fútbol, Carlos tiene hambre, si él va a comer que?",  "Él va a comer 37 sandwiches."],
-        ["¿Quien es el amigo de José?",  "Fransisco."],
-        ["¿De dónde es Ana y Conchita?",  "Spain."],
-        ["¿Quien vive con José?",  "Don Pedro."],
-        ["¿Cuando es el conerto de Conchita?",  "El concerto es en cuatro semanas."],
-        ["¿Que es en el cuartro misterioso?",  "¡Muchas ratas son en el cuartro misterioso!"]
+        [
+            ["¡Hola! Me llamo Eric.", "Hello! You can call me Eric."],
+            ["Eric es inteligente y está treste.", "Eric is intelligent and is feeling sad."],
+            ["Eric es treste porque su perro está emfermo y mal.", "Eric is sad because his dog is sick."],
+            ["Te presento a perro se llama Gandalf. Gandalf es el perro de Eric.", "I'd like to introduce you to this dog. His name is Gandalf. Gandalf is Eric's dog."],
+            ["Eric tiene que ir a casa de su tío.", "Eric has to go to his uncle's house."]
+        ],
+        [
+            ["Did Mexico break away from Spain?", "Yes!"],
+            ["Spain is the bigest producer of what product?", "Olive oil. Spain make 45% of the worlds olive oil."],
+            ["Why do people talk El Camino de Santiago?", "For spirtiual reasons."],
+            ["What is the capital of Spain?", "Es Madrid."],
+            ["What is El Grito de Dolores?", "The start of Mexican independence."]
+        ],
+        [
+            ["What is the differnce between tú and usted?", "Formal: usted, and informal: tú."],
+            ["How do you say the exit in spanish?", "La salida."],
+            ["¿Que es 'que onda'?", "What's up."],
+            ["What is the largest Spanish speaking country?", "Mexico (120 million)."],
+            ["¿What is the offical name of Mexico?", "Los Estados Unidos Mexicanos."]
+        ],
+        [
+            ["¿Como es Carlos?", "El no dige la veredad and está aburrido que en su casa."],
+            ["¿Como es Rufi y Rafi (Los perros de Felipe)?", "les gusta comer mucha paella."],
+            ["¿Como es Paquita?", "Ella es una Youtubera famosa."],
+            ["¿Como es Felipe?", "Le gustan cocinar muchas comidas."],
+            ["¿Detras de fútbol, Carlos tiene hambre, si él va a comer que?", "Él va a comer 37 sandwiches."]
+        ],
+        [
+            ["¿Quien es el amigo de José?", "Fransisco."],
+            ["¿De dónde es Ana y Conchita?", "Spain."],
+            ["¿Quien vive con José?", "Don Pedro."],
+            ["¿Cuando es el conerto de Conchita?", "El concerto es en cuatro semanas."],
+            ["¿Que es en el cuartro misterioso?", "¡Muchas ratas son en el cuartro misterioso!"]
+        ]
     ]
 ];
 
-let questionBank;
+
+let bank;
 
 const urlParams = new URLSearchParams(window.location.search);
 const compressedGame = urlParams.get('g');
 
 if (!compressedGame) {
     console.error("No custom game found in the URL. :(");
-    questionBank = defaultQuestionBank;
+    bank = defaultBank;
 } else {
     try {
         const decompressedJSON = LZString.decompressFromEncodedURIComponent(compressedGame);
-        
-        questionBank = JSON.parse(decompressedJSON);
-        console.log(questionBank);
 
-        console.log("Loaded questions from url");
+        bank = JSON.parse(decompressedJSON);
+
+        console.log("Loaded questions and column titles from url");
+        console.log(bank);
     } catch (error) {
         console.error("Failed to parse or decompress game data:", error);
-        questionBank = defaultQuestionBank;
+        bank = defaultBank;
     }
 }
 
-const compressedString = LZString.compressToEncodedURIComponent(JSON.stringify(questionBank));
-const shareableLink = "file:///c%3A/Users/inort/Desktop/Code/Spanish%20Jeopardy/index.html?g=" + compressedString; // for testing
-// const shareableLink = "https://iannpdx5.github.io/Spanish-Jeopardy?g=" + compressedString; for actual website
+const compressedString = LZString.compressToEncodedURIComponent(JSON.stringify(bank));
+const shareableLink = "https://iannpdx5.github.io/Spanish-Jeopardy?g=" + compressedString;
 console.log(shareableLink);
+
+const defaultTitles = {};
+
+function setDefaultColumnTitles() {
+    const titles = document.querySelectorAll('#options h3');
+
+    titles.forEach((title) => {
+        const column = title.dataset.columnnumber;
+
+        const text = title.textContent.trim();
+
+        defaultTitles[column] = text;
+        title.dataset.originalText = text;
+    });
+}
 
 const defaultValues = {};
 
@@ -79,6 +107,16 @@ const resetBtn = document.getElementById("resetBtn");
 resetBtn.addEventListener("click", resetGame);
 
 function resetGame() {
+    const titles = document.querySelectorAll('#options h3');
+
+    titles.forEach((title) => {
+        const column = title.dataset.columnNumber;
+        const text = title.dataset.originalText || defaultTitles[column] || title.textContent.trim();
+        defaultTitles[column] = text;
+        title.dataset.originalText = text;
+        title.textContent = text;
+    });
+
     const buttons = document.querySelectorAll('#options button');
 
     buttons.forEach((button) => {
@@ -265,9 +303,14 @@ function askQuestion(item, clickedButton) {
 }
 
 $(function () {
-    const buttons = document.querySelectorAll('#options button');
+    const titles = document.querySelectorAll('#options h3');
 
-    setDefaultButtonValues();
+    titles.forEach((title) => {
+        const n = title.dataset.columnNumber;
+        title.textContent = bank[1][n] || "ERROR!";
+    });
+    
+    const buttons = document.querySelectorAll('#options button');
 
     buttons.forEach((button) => {
         button.classList.add('available');
@@ -276,10 +319,14 @@ $(function () {
                 return;
             }
 
-            const n = button.id;
-            const item = questionBank[1][n] || ['ERROR!', 'ERROR!'];
+            const n1 = button.dataset.col;
+            const n2 = button.dataset.row
+            const item = bank[2][n1][n2] || ['ERROR!', 'ERROR!'];
 
             askQuestion(item, button);
         });
     });
+
+    setDefaultColumnTitles();
+    setDefaultButtonValues();
 });
