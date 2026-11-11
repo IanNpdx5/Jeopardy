@@ -217,6 +217,8 @@ function askQuestion(item, clickedButton) {
 }
 
 $(function () {
+    document.title = jName;
+
     document.querySelector('#resetBtn').textContent = jName || "ERROR!";
 
     const titles = document.querySelectorAll('#options h3');
