@@ -1,8 +1,8 @@
 const defaultBank = [
     "Jeopardy - Spainsh",
-    
+
     ["Translation", "History", "Answer It", "Berto Y Sus Amigos", "Cuartro Misterioso"],
-    
+
     [
         [
             ["¡Hola! Me llamo Eric.", "Hello! You can call me Eric."],
@@ -270,7 +270,7 @@ $(function () {
         const n = title.dataset.col;
         title.textContent = titlestxt[n] || "ERROR!";
     });
-    
+
     const buttons = document.querySelectorAll('#options button');
 
     buttons.forEach((button) => {
