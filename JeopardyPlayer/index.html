@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KNQ53RTX');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Define the listener BEFORE GTM fires the template -->
+    <script>
+        var consentCallbacks = [];
+        window.addConsentListenerExample = function (cb) {
+            consentCallbacks.push(cb);
+        };
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A spanish game site.">
+    <title>Jeopardy - Spainsh</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&amp;display=swap" rel="stylesheet">
+    <link href="Style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNQ53RTX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="page">
+        <div id="title">
+            <h1 id="resetBtn"></h1>
+        </div>
+        <div id="options">
+            <h3 data-col="0"></h3>
+            <h3 data-col="1"></h3>
+            <h3 data-col="2"></h3>
+            <h3 data-col="3"></h3>
+            <h3 data-col="4"></h3>
+            <button data-col="0" data-row="0"></button>
+            <button data-col="1" data-row="0"></button>
+            <button data-col="2" data-row="0"></button>
+            <button data-col="3" data-row="0"></button>
+            <button data-col="4" data-row="0"></button>
+            <button data-col="0" data-row="1"></button>
+            <button data-col="1" data-row="1"></button>
+            <button data-col="2" data-row="1"></button>
+            <button data-col="3" data-row="1"></button>
+            <button data-col="4" data-row="1"></button>
+            <button data-col="0" data-row="2"></button>
+            <button data-col="1" data-row="2"></button>
+            <button data-col="2" data-row="2"></button>
+            <button data-col="3" data-row="2"></button>
+            <button data-col="4" data-row="2"></button>
+            <button data-col="0" data-row="3"></button>
+            <button data-col="1" data-row="3"></button>
+            <button data-col="2" data-row="3"></button>
+            <button data-col="3" data-row="3"></button>
+            <button data-col="4" data-row="3"></button>
+            <button data-col="0" data-row="4"></button>
+            <button data-col="1" data-row="4"></button>
+            <button data-col="2" data-row="4"></button>
+            <button data-col="3" data-row="4"></button>
+            <button data-col="4" data-row="4"></button>
+        </div>
+    </div>
+    <div id="consent-banner"
+        style="display:none;position:fixed;bottom:0;left:0;right:0;padding:1rem;background:#222;color:#fff;">
+        We use cookies for analytics and ads.
+        <button id="accept-all">Accept all</button>
+        <button id="reject-all">Reject all</button>
+    </div>
+
+    <script>
+        function saveConsent(granted) {
+            var consent = {
+                adConsentGranted: granted,
+                adUserDataConsentGranted: granted,
+                adPersonalizationConsentGranted: granted,
+                analyticsConsentGranted: granted,
+                functionalityConsentGranted: granted,
+                personalizationConsentGranted: granted,
+                securityConsentGranted: true
+            };
+            // Cookie name must match COOKIE_NAME ('cookies') in the template
+            document.cookie = 'cookies=' + encodeURIComponent(JSON.stringify(consent)) +
+                ';max-age=31536000;path=/;SameSite=Lax';
+            consentCallbacks.forEach(function (cb) { cb(consent); });
+            document.getElementById('consent-banner').style.display = 'none';
+        }
+
+        if (document.cookie.indexOf('cookies=') === -1) {
+            document.getElementById('consent-banner').style.display = 'block';
+        }
+        document.getElementById('accept-all').onclick = function () { saveConsent(true); };
+        document.getElementById('reject-all').onclick = function () { saveConsent(false); };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./Code.js"></script>
+</body>
