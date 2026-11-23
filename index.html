@@ -1,76 +1,108 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-KNQ53RTX');</script>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s),
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://googletagmanager.com' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KNQ53RTX');
+    </script>
     <!-- End Google Tag Manager -->
-    <!-- Define the listener BEFORE GTM fires the template -->
+
     <script>
         var consentCallbacks = [];
         window.addConsentListenerExample = function (cb) {
             consentCallbacks.push(cb);
         };
     </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Custom Jeopardy Game Maker - Create & Share Trivia Boards</title>
+    <title>Custom Jeopardy Game Maker - Create &amp; Share Trivia Boards</title>
     <meta name="description"
         content="Build your own custom Jeopardy trivia games online for free. Add categories, questions, and answers, and share a custom game link instantly.">
+    <link rel="canonical" href="https://github.io">
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&amp;display=swap" rel="stylesheet">
-    <link href="Style.css" rel="stylesheet">
-</head>
 
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin="">
+    <link
+        href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Orbitron:wght@500;700;900&amp;display=swap"
+        rel="stylesheet">
+    <link href="Style.css" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Custom Jeopardy Game Maker",
+      "url": "https://github.io",
+      "description": "Build your own custom Jeopardy trivia games online for free. Add categories, questions, and answers, and share a custom game link instantly.",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNQ53RTX" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://googletagmanager.com" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <div id="page">
+        <nav class="top-nav" aria-label="Breadcrumb">
+            <a href="https://github.io">&larr; Back to IanNpdx5 Projects</a>
+        </nav>
+
         <main>
-            <h1>Custom Jeopardy Game Maker</h1>
-            <p>
-                Create and share your own interactive Jeopardy-style trivia boards right in your browser.
-                No accounts or databases required—all of your categories, clues, and answers are saved directly inside
-                your custom shareable link.
-            </p>
+            <section class="hero">
+                <h1>Custom Jeopardy Game Maker</h1>
+                <p>Create and share interactive trivia boards in your browser without accounts or databases—everything is saved directly in your shareable link.</p>
+                <div class="cta-group">
+                    <a href="./JeopardyCreator" class="btn-gold">Create a New Jeopardy Game</a>
+                    <a href="https://github.ioSpanish-Jeopardy/" class="btn-outline">View Live Example (Spanish Jeopardy)</a>
+                </div>
+            </section>
 
-            <div>
-                <a href="./JeopardyCreator">Create a New Jeopardy Game</a>
-                <a href="https://iannpdx5.github.io/Spanish-Jeopardy/">View Live Example (Spanish Jeopardy)</a>
-            </div>
+            <section class="section-card">
+                <h2>How to Use the Jeopardy Maker</h2>
+                <ol class="steps-list">
+                    <li><strong>Open the Creator:</strong> Launch the builder and set a custom title.</li>
+                    <li><strong>Add Categories &amp; Clues:</strong> Input your five categories, questions, and answers.</li>
+                    <li><strong>Generate Your Link:</strong> Create a custom URL storing your entire board.</li>
+                    <li><strong>Play or Share:</strong> Play immediately or send the link to others.</li>
+                </ol>
+            </section>
 
-            <h2>How to Use the Jeopardy Maker</h2>
-            <ol>
-                <li><strong>Open the Creator:</strong> Launch the game builder and give your trivia board a custom
-                    title.</li>
-                <li><strong>Add Categories and Clues:</strong> Fill in your five categories along with questions and
-                    answers for each point value.</li>
-                <li><strong>Generate Your Link:</strong> Click to generate a custom URL that stores your entire game
-                    board.</li>
-                <li><strong>Play or Share:</strong> Open your link to play immediately or send it to friends,
-                    classmates, or students.</li>
-            </ol>
-
-            <h2>See It in Action</h2>
-            <p>
-                Want to test how a finished board plays before building your own? Check out the
-                <a href="https://iannpdx5.github.io/Spanish-Jeopardy/">Spanish Jeopardy example</a>
-                to see how custom categories and clues load directly from a shareable URL.
-            </p>
+            <section class="section-card example-box">
+                <h2>See It in Action</h2>
+                <p>Test out a finished board by checking the <a href="https://github.ioSpanish-Jeopardy/">Spanish Jeopardy example</a>.</p>
+            </section>
         </main>
     </div>
-    <div id="consent-banner"
-        style="display:none;position:fixed;bottom:0;left:0;right:0;padding:1rem;background:#222;color:#fff;">
+
+    <footer>
+        <a href="https://github.com" class="github-link" target="_blank" rel="noopener noreferrer">
+            <span>View Source on GitHub</span>
+        </a>
+    </footer>
+
+    <div id="consent-banner">
         We use cookies for analytics and ads.
         <button id="accept-all">Accept all</button>
         <button id="reject-all">Reject all</button>
@@ -78,29 +110,16 @@
 
     <script>
         function saveConsent(granted) {
-            var consent = {
-                adConsentGranted: granted,
-                adUserDataConsentGranted: granted,
-                adPersonalizationConsentGranted: granted,
-                analyticsConsentGranted: granted,
-                functionalityConsentGranted: granted,
-                personalizationConsentGranted: granted,
-                securityConsentGranted: true
-            };
-            // Cookie name must match COOKIE_NAME ('cookies') in the template
-            document.cookie = 'cookies=' + encodeURIComponent(JSON.stringify(consent)) +
-                ';max-age=31536000;path=/;SameSite=Lax';
-            consentCallbacks.forEach(function (cb) { cb(consent); });
+            var consent = { adConsentGranted: granted, analyticsConsentGranted: granted, securityConsentGranted: true };
+            document.cookie = 'cookies=' + encodeURIComponent(JSON.stringify(consent)) + ';max-age=31536000;path=/;SameSite=Lax';
             document.getElementById('consent-banner').style.display = 'none';
         }
-
-        if (document.cookie.indexOf('cookies=') === -1) {
-            document.getElementById('consent-banner').style.display = 'block';
-        }
+        if (document.cookie.indexOf('cookies=') === -1) { document.getElementById('consent-banner').style.display = 'block'; }
         document.getElementById('accept-all').onclick = function () { saveConsent(true); };
         document.getElementById('reject-all').onclick = function () { saveConsent(false); };
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cloudflare.com"></script>
+    <script src="https://googleapis.com"></script>
     <script src="./Code.js"></script>
 </body>
+</html>
