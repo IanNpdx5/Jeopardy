@@ -121,6 +121,7 @@ body {
     background: rgba(255, 255, 255, 0.16);
     border-color: var(--gold);
 }
+
 .section-card {
     background: var(--jeopardy-card);
     border: 1px solid var(--jeopardy-border);
